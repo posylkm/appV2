@@ -34,13 +34,13 @@
             {{ form.query(class="form-control", id="query", placeholder="Title, description…") }}
           </div>
         </div>
-
+        
+        
         <!-- Country (multi) -->
         <div class="col-12 col-md-6 col-lg-3">
           <div class="filter-box h-100">
-            <label class="form-label mb-1" for="countries">Country (Ctrl/Cmd for multiple)</label>
-            {{ form.countries(class="form-select", id="countries", multiple=True) }}
-            <!-- <div class="form-text">Hold Ctrl/Cmd to select multiple.</div> -->
+            <label class="form-label mb-1" for="location">Location</label>
+            {{ form.countries(class="form-select", id="location", placeholder="City or Country") }}
           </div>
         </div>
 

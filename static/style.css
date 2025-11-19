@@ -10,15 +10,15 @@
 /* ---------- Theme variables ---------- */
 :root {
   --font-sans: "Inter","Segoe UI","Roboto",system-ui,-apple-system,sans-serif;
-  --brand: #198754;
-  --brand-600: #157347;
-  --text: #212529;
-  --muted: #6c757d;
-  --bg: #f8f9fa;
+  --brand: #38bdf8;        /* cyan */
+  --brand-600: #0ea5e9;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --bg: #f3f4f6;
   --card-bg: #ffffff;
-  --border: #e9ecef;
+  --border: #e5e7eb;
   --radius: 12px;
-  --shadow: 0 6px 16px rgba(0,0,0,0.06);
+  --shadow: 0 18px 45px rgba(15,23,42,0.10);
 }
 
 /* ---------- Base ---------- */
@@ -34,33 +34,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Gradient for all non-home pages */
-body:not(.home-page) {
-  background: linear-gradient(
-    to bottom,
-    #e8f0ff 0%,
-    #f3f5f8 100%
-  );
-}
-
 /* Links */
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* ---------- Navbar ---------- */
 .pg-navbar {
-  background: rgba(235, 243, 255, 0.90) !important;
-  backdrop-filter: blur(6px);
+  background: rgba(15, 23, 42, 0.92) !important; /* deep navy */
+  backdrop-filter: blur(12px);
   transition: background-color .25s ease, box-shadow .25s ease, padding .25s ease;
-  padding: .35rem 0;
+  padding: 0.55rem 0;
   z-index: 1030;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.35);
 }
 
 .pg-navbar.scrolled {
-  background: rgba(225, 235, 250, 0.95) !important;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  background: rgba(15, 23, 42, 0.98) !important;
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.6);
 }
 
 /* Spacer so content isn't hidden under fixed nav */
@@ -70,34 +60,37 @@ a:hover { text-decoration: underline; }
 
 /* Brand */
 .pg-brand {
-  color: #1b1f24 !important;
+  color: #e5e7eb !important;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: .2px;
 }
 
+.pg-brand img {
+  border-radius: 6px;
+}
+
 /* Menu links */
 .pg-menu .nav-link {
   font-size: .85rem;
-  padding: .35rem .55rem !important;
-  color: #1b1f24 !important;
-  opacity: .95;
+  padding: .35rem .65rem !important;
+  color: #e5e7eb !important;
+  opacity: .86;
   position: relative;
   transition: color .2s ease, opacity .2s ease;
 }
 .pg-menu .nav-link:hover {
-  color: var(--brand) !important;
+  color: #38bdf8 !important;
+  opacity: 1;
 }
-
-/* Underline animation on hover/active */
 .pg-menu .nav-link::after {
   content: "";
   position: absolute;
-  left: .55rem;
-  right: .55rem;
+  left: .7rem;
+  right: .7rem;
   bottom: .15rem;
   height: 2px;
-  background: var(--brand);
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform .22s ease;
@@ -109,17 +102,20 @@ a:hover { text-decoration: underline; }
 
 /* CTA button */
 .pg-cta {
-  background: var(--brand);
-  color: #fff !important;
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  color: #0b1120 !important;
   border-radius: 999px;
-  padding: .35rem .8rem;
+  padding: .4rem 1.1rem;
   border: none;
-  transition: transform .08s ease, box-shadow .2s ease, background-color .2s ease;
+  font-weight: 600;
+  font-size: .85rem;
+  box-shadow: 0 0 0 1px rgba(15,23,42,0.6), 0 14px 34px rgba(56,189,248,0.45);
+  transition: transform .08s ease, box-shadow .2s ease, filter .2s ease;
 }
 .pg-cta:hover {
-  box-shadow: 0 8px 24px rgba(25,135,84,.25);
+  box-shadow: 0 0 0 1px rgba(15,23,42,0.9), 0 18px 40px rgba(56,189,248,0.8);
   transform: translateY(-1px);
-  background: var(--brand-600);
+  filter: brightness(1.06);
 }
 
 /* Navbar toggler (hamburger) */
@@ -137,7 +133,7 @@ a:hover { text-decoration: underline; }
   display: inline-block;
   width: 1px;
   height: 18px;
-  background: rgba(0,0,0,.12);
+  background: rgba(148, 163, 184, .5);
 }
 
 /* ---------- Hero banner ---------- */
@@ -146,21 +142,213 @@ a:hover { text-decoration: underline; }
   overflow: visible;
 }
 
-
 .hero-banner .overlay {
-  min-height: 70vh;
+  min-height: 72vh;
   display: flex;
   align-items: center;
   background: transparent;
 }
 
+.hero-inner {
+  padding-top: 2.5rem;
+  padding-bottom: 3.5rem;
+}
+
+/* make hero columns stretch so both boxes align */
+.hero-row > [class*="col-"] {
+  display: flex;
+}
+
+.hero-card,
+.hero-aside {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-card {
+  background: radial-gradient(circle at top left,
+              rgba(56,189,248,0.18),
+              rgba(15,23,42,0.95));
+  border-radius: 24px;
+  padding: 2.25rem 2.5rem;
+  border: 1px solid rgba(148,163,184,0.55);
+  box-shadow: 0 24px 60px rgba(15,23,42,0.85);
+}
+
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148,163,184,0.8);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e5e7eb;
+  background: rgba(15,23,42,0.8);
+  margin-bottom: 0.9rem;
+}
+
+.hero-title {
+  font-size: clamp(2.1rem, 2.9vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: #e5e7eb;
+  opacity: 0.95;
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtext {
+  font-size: 0.92rem;
+  color: rgba(226,232,240,0.9);
+  margin-bottom: 1.4rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Accent button for hero */
+.btn-accent {
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  border: none;
+  color: #0b1120;
+  font-weight: 600;
+  padding-inline: 1.4rem;
+  box-shadow: 0 0 0 1px rgba(15,23,42,0.6), 0 14px 32px rgba(56,189,248,0.6);
+}
+.btn-accent:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 1px rgba(15,23,42,0.9), 0 18px 40px rgba(56,189,248,0.9);
+}
+
+/* Right-hand stats card – now visually matched to hero-card */
+.hero-aside {
+  background: radial-gradient(circle at top left,
+              rgba(56,189,248,0.18),
+              rgba(15,23,42,0.97));
+  border-radius: 24px;
+  padding: 1.8rem 1.9rem;
+  border: 1px solid rgba(148,163,184,0.55);
+  box-shadow: 0 24px 60px rgba(15,23,42,0.85);
+  color: #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero-stat + .hero-stat {
+  margin-top: 0.9rem;
+}
+
+.hero-stat-label {
+  display: block;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(148,163,184,0.9);
+}
+
+.hero-stat-value {
+  display: block;
+  font-size: 1.02rem;
+  font-weight: 500;
+}
+
+.hero-aside-note {
+  font-size: 0.8rem;
+  color: rgba(148,163,184,0.9);
+  margin-top: 1.2rem;
+}
+
+/* Responsive tweak */
+@media (max-width: 991.98px) {
+  .hero-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ---------- MAIN HOME SECTIONS (UNDER HERO) ---------- */
+
+/* Main content pod under the hero on the homepage */
+.home-sections {
+  margin-top: -1.5rem; /* pull up slightly towards hero */
+  padding: 1.75rem 1.5rem 2rem;
+  background: radial-gradient(circle at top,
+              rgba(15,23,42,0.96),
+              rgba(15,23,42,0.99));
+  border-radius: 24px 24px 18px 18px;
+  box-shadow: 0 -10px 40px rgba(15,23,42,0.9);
+}
+
+/* Dark cards on the homepage only */
+body.home-page .home-sections .card {
+  background: rgba(15,23,42,0.97);
+  border-radius: 18px;
+  border: 1px solid rgba(51,65,85,0.95);
+  box-shadow: 0 18px 40px rgba(15,23,42,0.9);
+  color: #e5e7eb;
+}
+
+/* Titles/headings inside dark home sections */
+body.home-page .home-sections .card-title,
+body.home-page .home-sections h3,
+body.home-page .home-sections h5 {
+  color: #f9fafb;
+}
+
+/* Body copy and lists inside dark home sections */
+body.home-page .home-sections p,
+body.home-page .home-sections li {
+  color: rgba(209,213,219,0.9);
+}
+
+/* Buttons inside the dark home sections */
+body.home-page .home-sections .btn-outline-primary {
+  border-color: #38bdf8;
+  color: #e5e7eb;
+}
+
+body.home-page .home-sections .btn-outline-primary:hover {
+  background: #38bdf8;
+  border-color: #38bdf8;
+  color: #0b1120;
+}
 
 /* ---------- Cards ---------- */
 .card {
   background: rgba(255, 255, 255, 0.96);
-  border: 1px solid rgba(233, 236, 239, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.95);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+
+.value-row .card {
+  height: 100%;
+  border-radius: 18px;
+  padding-top: 0.15rem;
+}
+
+.value-row .card-title {
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.value-row .card-body p {
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.value-row ul {
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
 }
 
 .card-title { font-weight: 600; }
@@ -183,6 +371,38 @@ a:hover { text-decoration: underline; }
   border: 1px solid #ced4da;
   border-radius: 10px;
   padding: .5rem .75rem;
+}
+
+/* Section titles/subtitles (used on home and elsewhere) */
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.section-subtitle {
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.text-accent {
+  color: #22c55e; /* or stick with brand if you prefer cyan */
+}
+
+.how-card {
+  border-radius: 20px;
+}
+
+.how-list {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.how-list li + li {
+  margin-top: 0.25rem;
+}
+
+.reg-card {
+  border-radius: 20px;
+  border-style: dashed;
 }
 
 /* ---------- Buttons ---------- */
@@ -215,14 +435,80 @@ a:hover { text-decoration: underline; }
 }
 
 /* ---------- Filters / search UI ---------- */
+
+/* Base layout for filter cards */
 .filter-box {
-  background: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: .5rem;
-  padding: .75rem;
+  border-radius: 18px;
+  padding: 0.9rem 1rem;
 }
 
-/* ---------- Select2 alignment ---------- */
+/* Dark glass filters on non-home pages (e.g. Search) */
+body:not(.home-page) .page-glass .filter-box {
+  background: radial-gradient(circle at top left,
+              rgba(15,23,42,0.96),
+              rgba(15,23,42,0.98));
+  border: 1px solid rgba(148,163,184,0.55);
+  box-shadow: 0 12px 30px rgba(15,23,42,0.9);
+  color: #e5e7eb;
+}
+
+/* Labels above inputs */
+body:not(.home-page) .page-glass .filter-box .form-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: rgba(148,163,184,0.95);
+}
+
+/* Inputs/selects inside filters */
+body:not(.home-page) .page-glass .filter-box .form-control,
+body:not(.home-page) .page-glass .filter-box .form-select {
+  background: rgba(15,23,42,0.98);
+  border: 1px solid rgba(51,65,85,0.95);
+  color: #e5e7eb;
+  border-radius: 14px;
+}
+
+/* Focus state */
+body:not(.home-page) .page-glass .filter-box .form-control:focus,
+body:not(.home-page) .page-glass .filter-box .form-select:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 0.12rem rgba(56,189,248,0.45);
+  background: rgba(15,23,42,0.98);
+}
+
+/* Placeholder text */
+body:not(.home-page) .page-glass .filter-box .form-control::placeholder {
+  color: rgba(148,163,184,0.9);
+}
+
+/* Fix KPI card text on Admin Dashboard (dark cards) */
+body:not(.home-page) .card .text-muted {
+  color: rgba(226,232,240,0.85) !important; /* bright muted */
+}
+
+body:not(.home-page) .card .display-6 {
+  color: #f8fafc !important; /* strong white numeric */
+}
+
+body:not(.home-page) .card h6 {
+  color: rgba(148,163,184,0.95) !important; /* header label */
+}
+
+/* Make Export CSV buttons readable */
+body:not(.home-page) .card .btn-outline-secondary {
+  color: #e5e7eb !important;
+  border-color: rgba(148,163,184,0.6) !important;
+}
+
+body:not(.home-page) .card .btn-outline-secondary:hover {
+  background: rgba(255,255,255,0.08) !important;
+}
+
+
+
+/* ---------- Select2 alignment (base) ---------- */
 .select2-container { width: 100% !important; }
 .select2-container .select2-selection--single,
 .select2-container .select2-selection--multiple {
@@ -242,6 +528,32 @@ a:hover { text-decoration: underline; }
   .select2-selection--single
   .select2-selection__arrow {
   height: 100%;
+}
+
+/* Dark Select2 styling in filter boxes on non-home pages */
+body:not(.home-page) .page-glass .filter-box .select2-container--default .select2-selection--multiple,
+body:not(.home-page) .page-glass .filter-box .select2-container--default .select2-selection--single {
+  background: rgba(15,23,42,0.98) !important;
+  border: 1px solid rgba(51,65,85,0.95) !important;
+  border-radius: 14px !important;
+  min-height: 44px;
+  padding: 6px 10px;
+  color: #e5e7eb !important;
+  display: flex;
+  align-items: center;
+}
+
+body:not(.home-page) .page-glass .filter-box .select2-container--default .select2-selection__rendered {
+  color: #e5e7eb !important;
+  line-height: 1.4;
+}
+
+body:not(.home-page) .page-glass .filter-box .select2-container--default .select2-selection__placeholder {
+  color: rgba(148,163,184,0.9) !important;
+}
+
+body:not(.home-page) .page-glass .filter-box .select2-container--default .select2-selection__arrow b {
+  border-color: rgba(229,231,235,0.7) transparent transparent transparent !important;
 }
 
 /* ---------- Utilities ---------- */
@@ -271,11 +583,8 @@ body.home-page {
 body.home-page::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.15);
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(15,23,42,0.78), rgba(0, 0, 0, 0.15));
   pointer-events: none;
   z-index: -1;
 }
@@ -297,4 +606,161 @@ body.home-page footer {
 body.home-page footer a {
   color: #cfe8ff !important;
   text-decoration: underline;
+}
+
+/* ==========================================================
+   DARK GLASS PAGE CONTAINER FOR NON-HOME PAGES
+   Skyline background, but NO outer box
+   ========================================================== */
+
+/* Non-home pages: same skyline background as home */
+body:not(.home-page) {
+  background-image: url("/static/img/skyline.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Dark radial overlay (same as homepage) */
+body:not(.home-page)::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, rgba(15,23,42,0.78), rgba(0,0,0,0.22));
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Base wrapper used on all pages – layout only */
+.page-glass {
+  width: 100%;
+}
+
+/* Home page: wrapper is fully neutral (hero controls layout) */
+body.home-page .page-glass {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  max-width: 100%;
+}
+
+/* Non-home pages: transparent wrapper, no box */
+body:not(.home-page) .page-glass {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  max-width: 960px;  /* controls text width only; adjust if you like */
+  color: #e5e7eb;
+}
+
+/* Footer text on non-home pages still readable on dark skyline */
+body:not(.home-page) .page-glass footer {
+  border-color: rgba(148,163,184,0.4) !important;
+  color: rgba(226,232,240,0.7) !important;
+}
+
+/* Links on non-home pages */
+body:not(.home-page) .page-glass a {
+  color: #38bdf8 !important;
+  text-decoration: underline;
+}
+
+/* Darker cards for non-home pages: matches hero-card aesthetic */
+body:not(.home-page) .page-glass .card {
+  background: rgba(30, 41, 59, 0.88); /* deep slate / translucent */
+  color: #e5e7eb;                    /* light gray text */
+  border: 1px solid rgba(148,163,184,0.35);
+  border-radius: 18px;
+  box-shadow:
+    0 12px 32px rgba(15,23,42,0.65),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+  margin-bottom: 1.35rem;
+  backdrop-filter: blur(6px);
+}
+
+/* Slightly brighter headings inside dark cards */
+body:not(.home-page) .page-glass .card-title,
+body:not(.home-page) .page-glass h3,
+body:not(.home-page) .page-glass h4,
+body:not(.home-page) .page-glass h5 {
+  color: #f8fafc !important;
+}
+
+/* Body copy tone */
+body:not(.home-page) .page-glass .card p,
+body:not(.home-page) .page-glass .card li {
+  color: rgba(226,232,240,0.85);
+}
+
+/* Search results rows: make list-group items dark, not white */
+body:not(.home-page) .page-glass .list-group-item {
+  background: rgba(15, 23, 42, 0.96);          /* very dark slate */
+  color: #e5e7eb;
+  border-color: rgba(51, 65, 85, 0.9);         /* darker border */
+}
+
+/* Text inside result rows */
+body:not(.home-page) .page-glass .list-group-item h5 {
+  color: #f9fafb;
+}
+
+body:not(.home-page) .page-glass .list-group-item p {
+  color: rgba(226, 232, 240, 0.9);
+}
+
+/* Buttons in result rows on dark background */
+body:not(.home-page) .page-glass .list-group-item .btn-outline-primary {
+  border-color: #38bdf8;
+  color: #e5e7eb;
+  background: transparent;
+}
+
+body:not(.home-page) .page-glass .list-group-item .btn-outline-primary:hover {
+  background: #38bdf8;
+  border-color: #38bdf8;
+  color: #0b1120;
+}
+
+body:not(.home-page) .page-glass .list-group-item .btn-outline-secondary {
+  border-color: #e5e7eb;
+  color: #e5e7eb;
+  background: transparent;
+}
+
+body:not(.home-page) .page-glass .list-group-item .btn-outline-secondary:hover {
+  background: rgba(248,250,252,0.1);
+}
+
+
+/* ==========================================================
+   FORCE DARK SELECT2 ON NON-HOME PAGES (Country filter etc.)
+   ========================================================== */
+
+body:not(.home-page) .select2-container--default .select2-selection--single,
+body:not(.home-page) .select2-container--default .select2-selection--multiple {
+  background: rgba(15,23,42,0.98) !important;
+  border: 1px solid rgba(51,65,85,0.95) !important;
+  border-radius: 14px !important;
+  min-height: 44px;
+  padding: 6px 10px;
+  color: #e5e7eb !important;
+  display: flex;
+  align-items: center;
+}
+
+/* Text / placeholder inside Select2 */
+body:not(.home-page) .select2-container--default .select2-selection__rendered {
+  color: #e5e7eb !important;
+  line-height: 1.4;
+}
+
+body:not(.home-page) .select2-container--default .select2-selection__placeholder {
+  color: rgba(148,163,184,0.9) !important;
+}
+
+/* Dropdown arrow */
+body:not(.home-page) .select2-container--default .select2-selection__arrow b {
+  border-color: rgba(229,231,235,0.7) transparent transparent transparent !important;
 }
