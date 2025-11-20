@@ -62,9 +62,9 @@
       <!-- Nav -->
       <div class="collapse navbar-collapse" id="pgNav">
         <ul class="navbar-nav ms-auto align-items-lg-center pg-menu">
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('faq') }}">FAQ</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li> -->
+          <!-- <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li> -->
+          <!-- <li class="nav-item"><a class="nav-link" href="{{ url_for('faq') }}">FAQ</a></li> -->
 
           {% if current_user.is_authenticated %}
             <li class="nav-item"><a class="nav-link" href="{{ url_for('search') }}">Search</a></li>
@@ -123,11 +123,14 @@
     <div class="page-glass w-100">
       {% block content %}{% endblock %}
 
-      <footer class="border-top mt-5 py-3 small text-center text-muted">
-        RE Marketplace operates as a B2B intermediary only and does not provide investment advice or recommendations.
-        Access is intended for professional/institutional investors and corporate developers.
-        See our <a href="{{ url_for('eligibility') }}">Eligibility</a> and <a href="{{ url_for('disclaimer') }}">Disclaimer</a>.
-      </footer>
+        {% block footer %}
+        <footer class="border-top mt-5 py-3 small text-center text-muted">
+          RE Marketplace operates as a B2B intermediary only and does not provide investment advice or recommendations.
+          Access is intended for professional/institutional investors and corporate developers.
+          See our <a href="{{ url_for('eligibility') }}">Eligibility</a> and <a href="{{ url_for('disclaimer') }}">Disclaimer</a>.
+        </footer>
+        {% endblock %}      
+      
     </div>
   </div>
 

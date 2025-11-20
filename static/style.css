@@ -1,5 +1,5 @@
 /* =========================================================
-   RE Marketplace — Unified Styles (Bootstrap 5 friendly)
+   RE Marketplace â€” Unified Styles (Bootstrap 5 friendly)
    ---------------------------------------------------------
    - Compact Promeritum-style navbar (dark links before scroll)
    - Homepage skyline background with overlay
@@ -122,11 +122,21 @@ a:hover { text-decoration: underline; }
 .navbar-toggler {
   padding: .2rem .4rem !important;
 }
+/*
 .navbar-light .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(27,31,36, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
   width: 1rem;
   height: 1rem;
 }
+*/
+
+.navbar-light .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+
 
 /* Optional divider between menu groups */
 .pg-divider {
@@ -228,7 +238,7 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 0 0 1px rgba(15,23,42,0.9), 0 18px 40px rgba(56,189,248,0.9);
 }
 
-/* Right-hand stats card – now visually matched to hero-card */
+/* Right-hand stats card â€“ now visually matched to hero-card */
 .hero-aside {
   background: radial-gradient(circle at top left,
               rgba(56,189,248,0.18),
@@ -274,6 +284,40 @@ a:hover { text-decoration: underline; }
   }
 }
 
+
+/* Fix right box typography + spacing */
+.hero-aside-text {
+  padding: 2.25rem 2.2rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* stop vertical stretching */
+  gap: 1rem;                   /* consistent spacing between paragraphs */
+}
+
+/* Match left typography exactly */
+.hero-aside-text .hero-subtitle {
+  font-size: 1rem;
+  opacity: 0.95;
+  margin: 0;
+}
+
+.hero-aside-text .hero-subtext {
+  font-size: 0.92rem;
+  color: rgba(226,232,240,0.9);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Make column proportions balanced */
+@media (min-width: 992px) {
+  .hero-row .col-lg-7 { flex: 0 0 55%; }
+  .hero-row .col-lg-5 { flex: 0 0 45%; }
+}
+
+
+
+
+
 /* ---------- MAIN HOME SECTIONS (UNDER HERO) ---------- */
 
 /* Main content pod under the hero on the homepage */
@@ -282,7 +326,7 @@ a:hover { text-decoration: underline; }
   padding: 1.75rem 1.5rem 2rem;
   background: radial-gradient(circle at top,
               rgba(15,23,42,0.96),
-              rgba(15,23,42,0.99));
+              rgba(15,23,42,0.99));              
   border-radius: 24px 24px 18px 18px;
   box-shadow: 0 -10px 40px rgba(15,23,42,0.9);
 }
@@ -579,7 +623,7 @@ body.home-page {
   background-attachment: fixed;
 }
 
-/* Dark overlay for readability — single, uniform overlay */
+/* Dark overlay for readability â€” single, uniform overlay */
 body.home-page::before {
   content: "";
   position: fixed;
@@ -597,16 +641,33 @@ body.home-page::before {
 }
 
 /* Make footer readable on homepage */
+/*
 body.home-page footer {
   background: rgba(0, 0, 0, 0.55);
   color: #eee !important;
   border-top: none !important;
 }
+*/
 
 body.home-page footer a {
   color: #cfe8ff !important;
   text-decoration: underline;
 }
+
+/* Make footer fully transparent on homepage */
+body.home-page footer {
+  background: transparent !important;
+  color: #eee !important;
+  border-top: none !important;
+}
+
+/* Footer text on non-home pages still readable on dark skyline */
+body:not(.home-page) .page-glass footer {
+  border-color: rgba(148,163,184,0.4) !important;
+  color: rgba(226,232,240,0.7) !important;
+}
+
+
 
 /* ==========================================================
    DARK GLASS PAGE CONTAINER FOR NON-HOME PAGES
@@ -631,7 +692,7 @@ body:not(.home-page)::before {
   z-index: -1;
 }
 
-/* Base wrapper used on all pages – layout only */
+/* Base wrapper used on all pages â€“ layout only */
 .page-glass {
   width: 100%;
 }
@@ -655,11 +716,6 @@ body:not(.home-page) .page-glass {
   color: #e5e7eb;
 }
 
-/* Footer text on non-home pages still readable on dark skyline */
-body:not(.home-page) .page-glass footer {
-  border-color: rgba(148,163,184,0.4) !important;
-  color: rgba(226,232,240,0.7) !important;
-}
 
 /* Links on non-home pages */
 body:not(.home-page) .page-glass a {
@@ -763,4 +819,343 @@ body:not(.home-page) .select2-container--default .select2-selection__placeholder
 /* Dropdown arrow */
 body:not(.home-page) .select2-container--default .select2-selection__arrow b {
   border-color: rgba(229,231,235,0.7) transparent transparent transparent !important;
+}
+
+
+
+/**********************************************************/
+
+/* ==========================================================
+   DARK ACCORDION FOR HOMEPAGE
+   ========================================================== */
+
+body.home-page .accordion-item {
+  background: rgba(15,23,42,0.85) !important;
+  border: 1px solid rgba(51,65,85,0.7) !important;
+  border-radius: 14px !important;
+  margin-bottom: 0.75rem;
+  backdrop-filter: blur(8px);
+}
+
+body.home-page .accordion-button {
+  background: rgba(15,23,42,0.6) !important;
+  color: #e5e7eb !important;
+  font-weight: 600;
+  padding: 1rem 1.25rem;
+  box-shadow: none !important;
+  border-radius: 14px !important;
+  z-index: 5;
+  position: relative;
+}
+
+body.home-page .accordion-button:not(.collapsed) {
+  background: rgba(30,41,59,0.75) !important;
+  color: #fff !important;
+}
+
+/*
+body.home-page .accordion-button::after {
+  filter: invert(1) brightness(1.4);
+} */
+
+body.home-page .accordion-body {
+  background: rgba(15,23,42,0.92) !important;
+  color: rgba(226,232,240,0.92) !important;
+  border-radius: 0 0 14px 14px !important;
+  padding: 1.1rem 1.25rem 1.4rem;
+}
+
+body.home-page .accordion-body hr {
+  border-color: rgba(255,255,255,0.08);
+}
+
+body.home-page .accordion-item:last-child {
+  margin-bottom: 0;
+}
+
+
+
+
+/* === FIXED WHITE CHEVRONS – CLEAN AND BULLETPROOF === */
+
+/* Override Bootstrap chevron entirely */
+.accordion-button::after {
+  content: "\203A";          /* Unicode: SINGLE RIGHT-POINTING ANGLE QUOTATION MARK › */
+  font-size: 1.35rem;
+  font-weight: 700;
+  display: inline-block;
+  color: #ffffff !important; /* pure white */
+  background-image: none !important;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+  margin-left: auto;
+  opacity: 1 !important;
+}
+
+/* Expanded => rotate down */
+.accordion-button:not(.collapsed)::after {
+  transform: rotate(90deg);
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* Ensure button text is white too */
+.accordion-button {
+  color: #ffffff !important;
+}
+
+
+
+/* ==========================================================
+   FIX FOOTER ON HOME PAGE ONLY
+   Makes the footer transparent and ensures it appears below
+   the dark accordion box so the skyline shows behind it.
+   ========================================================== */
+
+/* Make the footer inside page-glass fully transparent on home */
+body.home-page .page-glass footer {
+    background: transparent !important;
+    border-top-color: rgba(255,255,255,0.25) !important;
+    color: rgba(255,255,255,0.75) !important;
+}
+
+/* Add breathing room under the home accordion so footer clears the dark box */
+body.home-page .page-glass {
+  padding-bottom: 4rem !important;
+}
+
+
+body.home-page footer {
+  background: transparent !important;
+  color: #eee !important;
+}
+
+body.home-page .page-glass {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* --- FIX HOMEPAGE FOOTER DARK BACKGROUND OVERLAP --- */
+
+/* Remove the heavy shadow at the bottom of the home-sections, so footer isn’t sitting on a dark surface */
+body.home-page .home-sections {
+    box-shadow: 0 -10px 40px rgba(15,23,42,0.9),
+                0 0 0 rgba(0,0,0,0) !important; /* no downward shadow */
+    padding-bottom: 4rem !important; /* create breathing space above footer */
+}
+
+/* Footer sits on real background, not on the dark box */
+body.home-page footer {
+    position: relative;
+    z-index: 10;
+    background: transparent !important;
+}
+
+/* Ensure the backdrop behind the footer is the real skyline */
+body.home-page .page-glass {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+
+
+
+
+
+/* Make homepage accordion visually identical to hero boxes */
+body.home-page .accordion-item {
+  background: radial-gradient(circle at top left,
+              rgba(56,189,248,0.18),
+              rgba(15,23,42,0.95)) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(148,163,184,0.55) !important;
+  box-shadow: 0 24px 60px rgba(15,23,42,0.85) !important;
+  overflow: hidden;
+}
+
+body.home-page .accordion-button {
+  background: rgba(15,23,42,0.55) !important;
+  color: #e5e7eb !important;
+  font-weight: 600;
+  padding: 1rem 1.25rem;
+  box-shadow: none !important;
+}
+
+body.home-page .accordion-button:not(.collapsed) {
+  background: rgba(15,23,42,0.70) !important;
+  color: #fff !important;
+}
+
+/* Match text colors inside */
+body.home-page .accordion-body {
+  background: transparent !important;
+  color: rgba(226,232,240,0.92) !important;
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+/* Ensure chevron stays white */
+body.home-page .accordion-button::after {
+  color: #ffffff !important;
+  filter: none !important;
+}
+
+
+/* Inside hero-card accordion panel: match parent background perfectly */
+.home-accordion-panel .accordion-item {
+    background: transparent !important;
+    border: none !important;
+}
+
+.home-accordion-panel .accordion-button {
+    background: transparent !important;
+    color: #e5e7eb !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.home-accordion-panel .accordion-button:not(.collapsed) {
+    background: rgba(255,255,255,0.03) !important; /* optional tiny highlight */
+    color: #fff !important;
+}
+
+.home-accordion-panel .accordion-body {
+    background: transparent !important;
+    border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+
+/* ============================================
+   PERFECTLY MATCH ACCORDION TO HERO BOXES
+   ============================================ */
+
+/* Outer accordion container – already correct */
+body.home-page .home-sections {
+    background: rgba(15,23,42,0.85);
+    border-radius: 24px;
+    border: 1px solid rgba(148,163,184,0.45);
+    box-shadow: 0 24px 60px rgba(15,23,42,0.85);
+    backdrop-filter: blur(8px);
+}
+
+/* Make header buttons fully transparent */
+body.home-page .accordion-button {
+    background: transparent !important;
+    color: #e5e7eb !important;
+    border-radius: 16px !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(148,163,184,0.35) !important;
+}
+
+/* Expanded state: still transparent */
+body.home-page .accordion-button:not(.collapsed) {
+    background: transparent !important;
+    border-color: rgba(148,163,184,0.55) !important;
+    color: #ffffff !important;
+}
+
+/* Chevron stays clean white */
+body.home-page .accordion-button::after {
+    background-image: none !important;
+    color: #ffffff !important;
+    transform: rotate(0deg);
+}
+body.home-page .accordion-button:not(.collapsed)::after {
+    transform: rotate(90deg);
+}
+
+/* Accordion body matches main container exactly */
+body.home-page .accordion-body {
+    background: rgba(15,23,42,0.85) !important;
+    border-radius: 0 0 16px 16px !important;
+    color: rgba(226,232,240,0.92) !important;
+}
+
+
+/* ==========================================================
+   DARKEN THIRD-LEVEL CARDS INSIDE FAQ SECTION
+   ========================================================== */
+
+body.home-page #faqSubAccordion .card {
+  background: rgba(15,23,42,0.92) !important;
+  border: 1px solid rgba(51,65,85,0.7) !important;
+  border-radius: 14px !important;
+  color: rgba(226,232,240,0.92) !important;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.35);
+}
+
+/* Headings inside the dark cards */
+body.home-page #faqSubAccordion .card h5 {
+  color: #f8fafc !important;
+}
+
+/* Normal paragraph text inside cards */
+body.home-page #faqSubAccordion .card p {
+  color: rgba(226,232,240,0.92) !important;
+}
+
+
+/* Improve readability of Eligibility buttons inside FAQ */
+body.home-page #eligCollapse .btn-outline-primary {
+  border-color: rgba(255,255,255,0.6) !important;
+  color: rgba(255,255,255,0.95) !important;
+  background: rgba(255,255,255,0.05) !important;
+  font-weight: 600;
+  border-width: 1.5px;
+  padding-inline: 1.1rem;
+}
+
+body.home-page #eligCollapse .btn-outline-primary:hover {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.9) !important;
+  color: #0b1120 !important;
+}
+
+/* -----------------------------------------------------------
+   MATCH CONTACT SECTION TO ELIGIBILITY & REGULATORY
+   ----------------------------------------------------------- */
+
+/* Match the dark slab background */
+body.home-page #contactCollapse .accordion-body {
+  background: rgba(15, 23, 42, 0.92) !important;
+  border-radius: 0 0 14px 14px !important;
+  padding: 1.3rem 1.5rem 1.5rem !important;
+  color: rgba(226,232,240,0.92) !important;
+  border-top: 1px solid rgba(148,163,184,0.25);
+}
+
+/* Make email + labels readable & consistent */
+body.home-page #contactCollapse .accordion-body p,
+body.home-page #contactCollapse .accordion-body h5 {
+  color: rgba(226,232,240,0.92) !important;
+  margin-bottom: 0.6rem;
+}
+
+/* Email link bright, like the buttons up top */
+body.home-page #contactCollapse .accordion-body a {
+  color: #38bdf8 !important;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Button styling matches eligibility buttons */
+body.home-page #contactCollapse .accordion-body .btn {
+  border-radius: 999px !important;
+  padding: 0.35rem 1.2rem !important;
+  font-weight: 600 !important;
+}
+
+body.home-page #contactCollapse .accordion-body .btn-outline-primary {
+  border-color: #38bdf8 !important;
+  color: #e5e7eb !important;
+  background: transparent !important;
+}
+
+body.home-page #contactCollapse .accordion-body .btn-outline-primary:hover {
+  background: #38bdf8 !important;
+  color: #0b1120 !important;
+}
+
+/* Make muted text readable on dark backgrounds (non-home pages) */
+body:not(.home-page) .page-glass .text-muted {
+  color: rgba(226,232,240,0.75) !important; /* light gray */
 }

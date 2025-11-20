@@ -9,207 +9,437 @@
 
 {% block content %}
 
-<!-- ================= HERO ================= -->
-<div class="mb-4 hero-banner">
+<!-- ================= HERO + STACKED PANELS ================= -->
+<div class="hero-banner mb-4">
   <div class="overlay w-100">
     <div class="container hero-inner text-white">
 
-      <div class="row g-4 hero-row">
-        <div class="col-lg-7 d-flex">
-          <div class="hero-card flex-grow-1">
-            <p class="hero-kicker">
-              B2B • Equity • Mezz • Secured • USD $3–30M
-            </p>
-
-            <h1 class="hero-title">
-              RE Marketplace
-            </h1>
-
-            <p class="hero-subtitle">
-              We connect <strong>real estate developers</strong> with
-              <strong>professional investors</strong> for secured funding in the
-              <strong>USD&nbsp;$3–30M</strong> range — a niche often too complex for
-              commercial banks and too small for investment banks or hedge funds.
-            </p>
-
-            <p class="hero-subtext">
-              Founded by former investment bankers with 50+ years’ combined experience
-              across structured funding, interest rates, credit and financial risk.
-              We act as an intermediary to streamline introductions and information flow — 
-              not as a broker or investment adviser.
-            </p>
-
-            {% if not current_user.is_authenticated %}
-              <div class="hero-actions">
-                <a href="{{ url_for('register') }}" class="btn btn-accent btn-lg">Register</a>
-                <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">Log in</a>
-                <a href="{{ url_for('request_callback') }}" class="btn btn-outline-light btn-lg">Request a Call Back</a>
-              </div>
-            {% else %}
-              <div class="hero-actions">
-                <a href="{{ url_for('request_callback') }}" class="btn btn-outline-light btn-lg">Request a Call Back</a>
-              </div>
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="col-lg-5 d-flex">
-          <div class="hero-aside flex-grow-1">
-            <div>
-              <div class="hero-stat">
-                <span class="hero-stat-label">Ticket size</span>
-                <span class="hero-stat-value">USD $3–30M</span>
-              </div>
-              <div class="hero-stat">
-                <span class="hero-stat-label">Capital stack</span>
-                <span class="hero-stat-value">Equity, mezzanine, senior secured</span>
-              </div>
-              <div class="hero-stat">
-                <span class="hero-stat-label">Users</span>
-                <span class="hero-stat-value">Developers &amp; professional investors</span>
-              </div>
-            </div>
-            <p class="hero-aside-note">
-              We do not hold client money or provide investment advice. Negotiations occur directly between Developer and Investor.
-            </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<!-- ================= END HERO ================= -->
-
-
-<!-- ================= MAIN HOME SECTIONS WRAPPER ================= -->
-<div class="home-sections">
-
-  <!-- ================= VALUE PROPS ================= -->
-  <div class="row g-4 mb-4 value-row">
-    <div class="col-md-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">For Developers</h5>
-          <p>Showcase deals and track record, and engage with institutional capital.</p>
-          <ul class="mb-0">
-            <li>Upload a project synopsis</li>
-            <li>Attach documents securely</li>
-            <li>Engage verified investors</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">For Investors</h5>
-          <p>Discover opportunities with clear risk profiles, collateral, and target returns.</p>
-          <ul class="mb-0">
-            <li>Filter by IRR, risk, location</li>
-            <li>See sponsor’s equity &amp; security</li>
-            <li>Download attachments</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card h-100">
-        <div class="card-body">
-          <h5 class="card-title">Why This Segment</h5>
-          <p>
-            Mid-market real estate often falls between lending rails. 
-            We streamline introductions and deal data so good projects 
-            find the right capital, fast.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ================= END VALUE PROPS ================= -->
-
-
-  <!-- ================= HOW IT WORKS ================= -->
-  <section class="mb-4">
-    <div class="card how-card">
-      <div class="card-body">
-        <h3 class="section-title text-accent mb-2">How it works</h3>
-
-        <p class="section-subtitle mb-4">
-          We operate as a <strong>B2B intermediary</strong> facilitating introductions, information
-          exchange and coordination. If required, we can assist developers with preparation of
-          investor presentations, financial models and security structuring solutions.
-          We do <strong>not</strong> provide investment advice or arrange deals, and do not hold client money.
-          Negotiations occur directly <strong>between Developer and Investor</strong>.
+      <!-- 1. HERO MAIN CARD (TOP) -->
+      <div class="hero-card mb-4">
+        <p class="hero-kicker">
+          B2B • Equity • Mezz • Secured • USD $3–30M
         </p>
 
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <h5 class="text-uppercase text-muted small fw-semibold mb-2">Developers</h5>
-            <ol class="ps-3 how-list">
-              <li>Register and complete your company profile.</li>
-              <li>Upload a project synopsis and attachments.</li>
-              <li>Engage with verified investors.</li>
-              <li>When requested, sign a <strong>tri-party NDA</strong>.</li>
-            </ol>
-            {% if current_user.role in ['developer', 'admin'] %}
-              <a href="{{ url_for('upload') }}" class="btn btn-sm btn-outline-primary">Upload Project</a>
-            {% endif %}
-          </div>
+        <h1 class="hero-title">RE Marketplace</h1>
 
-          <div class="col-md-6 mb-3">
-            <h5 class="text-uppercase text-muted small fw-semibold mb-2">Investors</h5>
-            <ol class="ps-3 how-list">
-              <li>Register as a professional/institutional investor.</li>
-              <li>Filter projects by IRR, risk, location, security.</li>
-              <li>Review details and documents securely.</li>
-              <li>Request a <strong>tri-party NDA</strong> for due diligence.</li>
-            </ol>
-            {% if current_user.role in ['investor', 'admin'] %}
-              <a href="{{ url_for('nda_request') }}" class="btn btn-sm btn-outline-primary">Request NDA</a>
-            {% endif %}
-          </div>
-        </div>
+        <p class="hero-subtitle">
+          We connect <strong>real estate developers</strong> with
+          <strong>professional investors</strong> for secured funding in the
+          <strong>USD&nbsp;$3–30M</strong> range — a niche often too complex for
+          commercial banks and too small for investment banks or hedge funds.
+        </p>
+
+        <p class="hero-subtext">
+          Founded by former investment bankers with 50+ years’ combined experience
+          across structured funding, interest rates, credit and financial risk.
+          We act as an intermediary to streamline introductions and information flow —
+          not as a broker or investment adviser.
+        </p>
 
         {% if not current_user.is_authenticated %}
-          <a href="{{ url_for('register') }}" class="btn btn-sm btn-outline-primary">Create an account</a>
-          <a href="{{ url_for('login') }}" class="btn btn-sm btn-outline-primary">Log in</a>
+          <div class="hero-actions">
+            <a href="{{ url_for('register') }}" class="btn btn-accent btn-lg">Register</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">Log in</a>
+            <a href="{{ url_for('request_callback') }}" class="btn btn-outline-light btn-lg">Request a Call Back</a>
+          </div>
+        {% else %}
+          <div class="hero-actions">
+            <a href="{{ url_for('request_callback') }}" class="btn btn-outline-light btn-lg">Request a Call Back</a>
+          </div>
         {% endif %}
-
       </div>
-    </div>
-  </section>
-  <!-- ================= END HOW IT WORKS ================= -->
 
-
-  <!-- ================= ELIGIBILITY ================= -->
-  <section class="mb-0">
-    <div class="card reg-card">
-      <div class="card-body">
-        <h3 class="section-title text-accent mb-2">Eligibility &amp; regulatory</h3>
-
-        <p class="section-subtitle mb-3">
-          Access is limited to <strong>professional/institutional investors</strong> and corporate
-          developers. The platform is for <strong>business-to-business</strong> use only and is
-          <strong>not a public solicitation</strong>.
+      <!-- 2. HERO ASIDE CARD (MIDDLE) -->
+      <div class="hero-aside hero-aside-text mb-4">
+        <p class="hero-subtitle">
+          Mid-market real estate often falls between lending rails. We streamline
+          introductions and deal data so good projects find the right capital, fast.
         </p>
 
-        <p class="section-subtitle mb-3">
-          By using the platform you confirm you meet relevant professional criteria in your jurisdiction.
+        <p class="hero-subtext">
+          We operate as a <strong>B2B intermediary</strong> facilitating introductions,
+          information exchange and coordination, so credible projects find capital more efficiently.
+          If required, we assist developers with investor decks, financial models and security structuring.
         </p>
 
-        <div class="d-flex flex-wrap gap-2">
-          <a href="{{ url_for('eligibility') }}" class="btn btn-sm btn-outline-primary">Read eligibility</a>
-          <a href="{{ url_for('disclaimer') }}" class="btn btn-sm btn-outline-primary">Read disclaimer</a>
+        <p class="hero-subtext mb-0">
+          We do <strong>not</strong> provide investment advice or arrange deals, and do not hold
+          client money. Negotiations occur directly between Developer and Investor.
+        </p>
+
+        <div class="hero-actions">
+          <a href="{{ url_for('faq') }}" class="btn btn-outline-light btn-lg">Go to FAQ</a>
         </div>
       </div>
+
+      <!-- 3. ACCORDION PANEL (BOTTOM) -->
+      <!-- Uses the SAME hero-card styling so it visually matches the two boxes above -->
+      <div class="hero-card mb-0 home-accordion-panel">
+
+        <!-- ================= ACCORDION SECTION ================= -->
+        <div class="accordion" id="homeAccordion">
+
+          <!-- 1. FOR INVESTORS -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="investorsHeading">
+              <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#investorsCollapse"
+                      aria-expanded="false" aria-controls="investorsCollapse">
+                For Investors
+              </button>
+            </h2>
+            <div id="investorsCollapse" class="accordion-collapse collapse"
+                 aria-labelledby="investorsHeading" data-bs-parent="#homeAccordion">
+              <div class="accordion-body">
+
+                <h5 class="card-title">For Investors</h5>
+                <p>Discover opportunities with clear risk profiles, collateral, and target returns.</p>
+                <ul class="mb-0">
+                  <li>Filter by IRR, risk, location</li>
+                  <li>See sponsor’s equity &amp; security</li>
+                  <li>Download attachments</li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. FOR DEVELOPERS -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="developersHeading">
+              <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#developersCollapse"
+                      aria-expanded="false" aria-controls="developersCollapse">
+                For Developers
+              </button>
+            </h2>
+            <div id="developersCollapse" class="accordion-collapse collapse"
+                 aria-labelledby="developersHeading" data-bs-parent="#homeAccordion">
+              <div class="accordion-body">
+
+                <h5 class="card-title">For Developers</h5>
+                <p>Showcase deals and track record, and engage with institutional capital.</p>
+                <ul class="mb-0">
+                  <li>Upload a project synopsis</li>
+                  <li>Attach documents securely</li>
+                  <li>Engage verified investors</li>
+                </ul>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. FAQ -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading">
+              <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#faqCollapse"
+                      aria-expanded="false" aria-controls="faqCollapse">
+                FAQ
+              </button>
+            </h2>
+
+            <div id="faqCollapse" class="accordion-collapse collapse"
+                 aria-labelledby="faqHeading" data-bs-parent="#homeAccordion">
+              <div class="accordion-body">
+
+                <!-- ================= SUB-ACCORDION ================= -->
+                <div class="accordion accordion-flush" id="faqSubAccordion">
+
+                  <!-- 1. REGISTRATION & ROLES -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqRegHeading">
+                      <button class="accordion-button collapsed" type="button"
+                              data-bs-toggle="collapse" data-bs-target="#faqReg"
+                              aria-expanded="false" aria-controls="faqReg">
+                        Registration & Roles
+                      </button>
+                    </h2>
+                    <div id="faqReg" class="accordion-collapse collapse"
+                         aria-labelledby="faqRegHeading" data-bs-parent="#faqSubAccordion">
+                      <div class="accordion-body">
+
+                        <div class="card mb-3"><div class="card-body">
+                          <h5>Who can register as a developer?</h5>
+                          <p>Developers with a verifiable track record in residential, commercial, or mixed-use projects.</p>
+                        </div></div>
+
+                        <div class="card mb-3"><div class="card-body">
+                          <h5>Who can register as an investor?</h5>
+                          <p>Institutional and professional investors seeking secured, short-term real estate exposure.</p>
+                        </div></div>
+
+                        <div class="card mb-3"><div class="card-body">
+                          <h5>Who can view projects?</h5>
+                          <p>Registered investors can browse full details and documents. Public visitors can only view high-level information on the homepage.</p>
+                        </div></div>
+
+                        <div class="card mb-0"><div class="card-body">
+                          <h5>Is the platform regulated as a financial intermediary?</h5>
+                          <p>No. RE Marketplace operates as an <strong>information and introduction platform</strong>. 
+                          We do not provide investment advice, arrange or broker deals, hold client money, or distribute securities. 
+                          All engagement and transactions occur directly between developers and investors following bilateral agreement.</p>
+                        </div></div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 2. PROJECTS & PROCESS -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqProcessHeading">
+                      <button class="accordion-button collapsed" type="button"
+                              data-bs-toggle="collapse" data-bs-target="#faqProcess"
+                              aria-expanded="false" aria-controls="faqProcess">
+                        Projects & Process
+                      </button>
+                    </h2>
+                    <div id="faqProcess" class="accordion-collapse collapse"
+                         aria-labelledby="faqProcessHeading" data-bs-parent="#faqSubAccordion">
+                      <div class="accordion-body">
+
+                        <div class="card mb-3"><div class="card-body">
+                          <h5>What’s the typical project duration?</h5>
+                          <p>Most opportunities are between <strong>3 and 24 months</strong>.</p>
+                        </div></div>
+
+                        <div class="card mb-3"><div class="card-body">
+                          <h5>What qualifies as a secured project?</h5>
+                          <p>Projects with collateral such as property, land, or first/second-charge security.</p>
+                        </div></div>
+
+                        <div class="card mb-0"><div class="card-body">
+                          <h5>Can investors contact developers directly?</h5>
+                          <p>Initial contact occurs through the platform; deeper info requires NDA.</p>
+                        </div></div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 3. NDA & CONFIDENTIALITY -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqNdaHeading">
+                      <button class="accordion-button collapsed" type="button"
+                              data-bs-toggle="collapse" data-bs-target="#faqNda"
+                              aria-expanded="false" aria-controls="faqNda">
+                        NDA & Confidentiality
+                      </button>
+                    </h2>
+                    <div id="faqNda" class="accordion-collapse collapse"
+                         aria-labelledby="faqNdaHeading" data-bs-parent="#faqSubAccordion">
+                      <div class="accordion-body">
+
+                        <div class="card mb-3"><div class="card-body">
+                          <h5>What is the tri-party NDA process?</h5>
+                          <p>When an investor expresses interest in a project, they may request to sign a tri-party non-disclosure agreement between the Developer, the Platform, and the Investor. Once signed, the developer can share confidential information such as financial model, Quantity Surveyor (QS) reports, title documents and planning details securely.</p>
+                        </div></div>
+
+                        <div class="card mb-0"><div class="card-body">
+                          <h5>Does the NDA grant investment rights?</h5>
+                          <p>No — the NDA only governs confidentiality and information access. Any subsequent investment decision, term sheet, or legal agreement is negotiated directly between the developer and investor.</p>
+                        </div></div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 4. PLATFORM OPERATIONS -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqOpsHeading">
+                      <button class="accordion-button collapsed" type="button"
+                              data-bs-toggle="collapse" data-bs-target="#faqOps"
+                              aria-expanded="false" aria-controls="faqOps">
+                        Platform Operations
+                      </button>
+                    </h2>
+                    <div id="faqOps" class="accordion-collapse collapse"
+                         aria-labelledby="faqOpsHeading" data-bs-parent="#faqSubAccordion">
+                      <div class="accordion-body">
+
+                          <div class="card mb-3"><div class="card-body">
+                            <h5>What fees are charged?</h5>
+                            <p>Registration is free for both developers and investors. 
+                            RE Marketplace may charge a service or facilitation fee for certain introductions or data access — 
+                            these are agreed transparently and in writing before any engagement.</p>
+                          </div></div>
+          
+                          <div class="card mb-3"><div class="card-body">
+                            <h5>How is project information verified?</h5>
+                            <p>Developers are responsible for the accuracy of their submissions. 
+                            RE Marketplace performs basic plausibility checks but does not conduct full due diligence or guarantee completeness.</p>
+                          </div></div>
+          
+                          <div class="card mb-3"><div class="card-body">
+                            <h5>Data & privacy</h5>
+                            <p>We use role-based access and all information is stored securely. Only owners (or admins) can edit or modify projects.</p>
+                          </div></div>
+          
+                          <div class="card mb-3"><div class="card-body">
+                            <h5>How is data stored and protected?</h5>
+                            <p>All uploaded files are stored securely with access restricted by user role. 
+                            Developers retain ownership of their materials. We comply with applicable data protection laws 
+                            and do not sell or share user data with third parties.</p>
+                          </div></div>
+          
+                          <div class="card mb-0"><div class="card-body">
+                            <h5>Can projects be edited or removed?</h5>
+                            <p>Yes. Developers can edit or withdraw their own projects at any time. 
+                            Admins may remove listings that breach content or eligibility standards.</p>
+                          </div></div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 5. INVESTOR EXPERIENCE -->
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="faqInvHeading">
+                      <button class="accordion-button collapsed" type="button"
+                              data-bs-toggle="collapse" data-bs-target="#faqInv"
+                              aria-expanded="false" aria-controls="faqInv">
+                        Investor Experience
+                      </button>
+                    </h2>
+                    <div id="faqInv" class="accordion-collapse collapse"
+                         aria-labelledby="faqInvHeading" data-bs-parent="#faqSubAccordion">
+                      <div class="accordion-body">
+
+                          <div class="card mb-3"><div class="card-body">
+                            <h5>How do investors search for projects?</h5>
+                            <p>Investors can filter projects by location, risk level, IRR, security type, or duration. 
+                            Summaries are visible to all registered investors, with additional details released once an NDA is in place.</p>
+                          </div></div>
+          
+                          <div class="card mb-0"><div class="card-body">
+                            <h5>Can multiple investors participate in a single project?</h5>
+                            <p>Potentially, yes — where a developer is open to co-investment or syndication. 
+                            Such arrangements are managed outside the platform and coordinated directly between the parties.</p>
+                          </div></div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <!-- ================= END SUB-ACCORDION ================= -->
+
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. ABOUT -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="aboutHeading">
+              <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#aboutCollapse"
+                      aria-expanded="false" aria-controls="aboutCollapse">
+                About
+              </button>
+            </h2>
+            <div id="aboutCollapse" class="accordion-collapse collapse"
+                 aria-labelledby="aboutHeading" data-bs-parent="#homeAccordion">
+              <div class="accordion-body">
+                  <p>
+                    RE Marketplace connects real estate developers with professional investors in the secured
+                    short-term funding niche (USD $3–30M).
+                  </p>
+                  <p>
+                    Founded by former investment bankers with 50+ years of combined experience in structured credit, funding,
+                    interest rates, and financial risk, we operate as a <strong>B2B intermediary</strong> —
+                    not a broker or investment adviser.
+                  </p>
+                  <p class="mb-0">
+                    Our role is to streamline introductions, information flow and coordination,
+                    including tri-party NDAs, so credible projects find the right capital more efficiently and fast.
+                  </p>
+                </div>
+            </div>
+          </div>
+
+          <!-- 5. ELIGIBILITY & REGULATORY -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="eligHeading">
+              <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#eligCollapse"
+                      aria-expanded="false" aria-controls="eligCollapse">
+                Eligibility & Regulatory
+              </button>
+            </h2>
+
+            <div id="eligCollapse" class="accordion-collapse collapse"
+                 aria-labelledby="eligHeading" data-bs-parent="#homeAccordion">
+              <div class="accordion-body">
+
+                  <p>
+                    Access is limited to <strong>professional/institutional investors</strong> and corporate
+                    developers. The platform is strictly <strong>B2B</strong> and not a public solicitation.
+                  </p>
+          
+                  <p class="mb-3">
+                    By using the platform, you confirm you meet applicable professional criteria.
+                  </p>
+          
+                  <!-- ORIGINAL BUTTONS RESTORED -->
+                  <div class="d-flex flex-wrap gap-2 mt-2">
+                    <a href="{{ url_for('eligibility') }}" class="btn btn-sm btn-outline-primary">
+                      Read eligibility
+                    </a>
+                    <a href="{{ url_for('disclaimer') }}" class="btn btn-sm btn-outline-primary">
+                      Read disclaimer
+                    </a>
+                  </div>
+                  
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. CONTACT -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="contactHeading">
+              <button class="accordion-button collapsed" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#contactCollapse"
+                      aria-expanded="false" aria-controls="contactCollapse">
+                Contact
+              </button>
+            </h2>
+            <div id="contactCollapse" class="accordion-collapse collapse"
+                 aria-labelledby="contactHeading" data-bs-parent="#homeAccordion">
+              <div class="accordion-body">
+
+                  <h5>General Enquiries</h5>
+                  <p class="mb-1">Email: <a href="mailto:info@example.com">info@example.com</a></p>
+                  <p class="mb-1">Phone: +44 0000 000000</p>
+                  <p class="mb-3">Address: 123 Example Street, City, Country</p>
+
+                  <h5>Prefer us to call you?</h5>
+                  
+                  <div class="d-flex flex-wrap gap-2 mt-2">
+                    <a href="{{ url_for('request_callback') }}" class="btn btn-sm btn-outline-primary">
+                      Request Call Back
+                    </a>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- ================= END ACCORDION ================= -->
+
+      </div>
+      <!-- END ACCORDION PANEL -->
+
     </div>
-  </section>
-  <!-- ================= END ELIGIBILITY ================= -->
-
+  </div>
 </div>
-<!-- ================= END MAIN HOME SECTIONS WRAPPER ================= -->
+<!-- ================= END HERO + STACKED PANELS ================= -->
 
+{% endblock %}
+
+{% block footer %}
+<footer class="border-top mt-5 py-3 small text-center text-muted" style="background: transparent !important;">
+  RE Marketplace operates as a B2B intermediary only and does not provide investment advice or recommendations.
+  Access is intended for professional/institutional investors and corporate developers.
+  See our <a href="{{ url_for('eligibility') }}">Eligibility</a> and <a href="{{ url_for('disclaimer') }}">Disclaimer</a>.
+</footer>
 {% endblock %}
