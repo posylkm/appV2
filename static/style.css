@@ -1201,3 +1201,19 @@ body.home-page #contactCollapse .accordion-body .btn-outline-primary:hover {
 body:not(.home-page) .page-glass .text-muted {
   color: rgba(226,232,240,0.75) !important; /* light gray */
 }
+
+/* Auto-detect required fields and add an asterisk to their labels */
+label[for]:has(+ input[required]),
+label[for]:has(+ textarea[required]),
+label[for]:has(+ select[required]) {
+    position: relative;
+}
+
+label[for]:has(+ input[required])::after,
+label[for]:has(+ textarea[required])::after,
+label[for]:has(+ select[required])::after {
+    content: " *";
+    color: #e63946;
+    font-weight: 700;
+    margin-left: 4px;
+}
