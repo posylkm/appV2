@@ -109,7 +109,7 @@ with app.app_context():
 
 # PUSH TO GIT
 # !git add .
-# !git commit -m "more minor changes"
+# !git commit -m "added some content"
 # !git push
 
 

@@ -122,13 +122,7 @@ a:hover { text-decoration: underline; }
 .navbar-toggler {
   padding: .2rem .4rem !important;
 }
-/*
-.navbar-light .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(27,31,36, 0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-  width: 1rem;
-  height: 1rem;
-}
-*/
+
 
 .navbar-light .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
@@ -640,14 +634,6 @@ body.home-page::before {
   }
 }
 
-/* Make footer readable on homepage */
-/*
-body.home-page footer {
-  background: rgba(0, 0, 0, 0.55);
-  color: #eee !important;
-  border-top: none !important;
-}
-*/
 
 body.home-page footer a {
   color: #cfe8ff !important;
@@ -959,9 +945,6 @@ body.home-page .page-glass {
 
 
 
-
-
-
 /* Make homepage accordion visually identical to hero boxes */
 body.home-page .accordion-item {
   background: radial-gradient(circle at top left,
@@ -1094,7 +1077,7 @@ body.home-page #faqSubAccordion .card p {
 }
 
 
-/* Improve readability of Eligibility buttons inside FAQ */
+/* Improve readability of Eligibility buttons inside accodion */
 body.home-page #eligCollapse .btn-outline-primary {
   border-color: rgba(255,255,255,0.6) !important;
   color: rgba(255,255,255,0.95) !important;
@@ -1110,11 +1093,66 @@ body.home-page #eligCollapse .btn-outline-primary:hover {
   color: #0b1120 !important;
 }
 
+
+body.home-page #investorsCollapse .btn-outline-primary {
+  border-color: rgba(255,255,255,0.6) !important;
+  color: rgba(255,255,255,0.95) !important;
+  background: rgba(255,255,255,0.05) !important;
+  font-weight: 600;
+  border-width: 1.5px;
+  padding-inline: 1.1rem;
+}
+
+body.home-page #investorsCollapse .btn-outline-primary:hover {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.9) !important;
+  color: #0b1120 !important;
+}
+
+
+body.home-page #contactCollapse .btn-outline-primary {
+  border-color: rgba(255,255,255,0.6) !important;
+  color: rgba(255,255,255,0.95) !important;
+  background: rgba(255,255,255,0.05) !important;
+  font-weight: 600;
+  border-width: 1.5px;
+  padding-inline: 1.1rem;
+}
+
+body.home-page #contactCollapse .btn-outline-primary:hover {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.9) !important;
+  color: #0b1120 !important;
+}
+
+
+
+body.home-page #developersCollapse .btn-outline-primary {
+  border-color: rgba(255,255,255,0.6) !important;
+  color: rgba(255,255,255,0.95) !important;
+  background: rgba(255,255,255,0.05) !important;
+  font-weight: 600;
+  border-width: 1.5px;
+  padding-inline: 1.1rem;
+}
+
+body.home-page #developersCollapse .btn-outline-primary:hover {
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.9) !important;
+  color: #0b1120 !important;
+}
+
+
+
+
+
+
 /* -----------------------------------------------------------
    MATCH CONTACT SECTION TO ELIGIBILITY & REGULATORY
    ----------------------------------------------------------- */
 
 /* Match the dark slab background */
+/*
 body.home-page #contactCollapse .accordion-body {
   background: rgba(15, 23, 42, 0.92) !important;
   border-radius: 0 0 14px 14px !important;
@@ -1122,6 +1160,7 @@ body.home-page #contactCollapse .accordion-body {
   color: rgba(226,232,240,0.92) !important;
   border-top: 1px solid rgba(148,163,184,0.25);
 }
+*/
 
 /* Make email + labels readable & consistent */
 body.home-page #contactCollapse .accordion-body p,
@@ -1131,13 +1170,16 @@ body.home-page #contactCollapse .accordion-body h5 {
 }
 
 /* Email link bright, like the buttons up top */
+
+/*
 body.home-page #contactCollapse .accordion-body a {
   color: #38bdf8 !important;
   font-weight: 600;
   text-decoration: underline;
 }
-
+*/
 /* Button styling matches eligibility buttons */
+/*
 body.home-page #contactCollapse .accordion-body .btn {
   border-radius: 999px !important;
   padding: 0.35rem 1.2rem !important;
@@ -1154,7 +1196,7 @@ body.home-page #contactCollapse .accordion-body .btn-outline-primary:hover {
   background: #38bdf8 !important;
   color: #0b1120 !important;
 }
-
+*/
 /* Make muted text readable on dark backgrounds (non-home pages) */
 body:not(.home-page) .page-glass .text-muted {
   color: rgba(226,232,240,0.75) !important; /* light gray */

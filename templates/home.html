@@ -58,8 +58,8 @@
 
         <p class="hero-subtext">
           We operate as a <strong>B2B intermediary</strong> facilitating introductions,
-          information exchange and coordination, so credible projects find capital more efficiently.
-          If required, we assist developers with investor decks, financial models and security structuring.
+          information exchange and coordination, so credible projects find capital faster and efficiently.<br>
+          If required, we assist developers with investor decks, financial models and security structuring solutions to turn investors calls productive and efficient.
         </p>
 
         <p class="hero-subtext mb-0">
@@ -92,13 +92,24 @@
                  aria-labelledby="investorsHeading" data-bs-parent="#homeAccordion">
               <div class="accordion-body">
 
-                <h5 class="card-title">For Investors</h5>
-                <p>Discover opportunities with clear risk profiles, collateral, and target returns.</p>
+                <h5 class="card-title">Our platform is designed to provide institutional RE investors with selection of opportunities that match their individual focus and risk profile</h5>
+                <!-- <p><strong>Our platform is designed to provide institutional RE investors with selection of opportunities that match their individual focus and risk profile.</strong></p> -->
+                <p></p>
+                <p>Discover investment opportunities with clear risk profiles, collateral, and target returns.</p>
+
                 <ul class="mb-0">
-                  <li>Filter by IRR, risk, location</li>
-                  <li>See sponsor’s equity &amp; security</li>
-                  <li>Download attachments</li>
+                  <li>Register as a professional/institutional investor.</li>                
+                  <li>Filter projects by IRR, risk, location, security.</li>
+                  <li>See sponsor’s equity &amp; security.</li>
+                  <li>Review high level details and documents.
+                  <li>Request a tri-party NDA for detailed information, financial model and due diligence.</li>
                 </ul>
+                                
+                <div class="d-flex flex-wrap gap-2 mt-2">
+                  <a href="{{ url_for('nda_request') }}" class="btn btn-sm btn-outline-primary">
+                    Request NDA
+                  </a>
+                </div>
 
               </div>
             </div>
@@ -117,13 +128,23 @@
                  aria-labelledby="developersHeading" data-bs-parent="#homeAccordion">
               <div class="accordion-body">
 
-                <h5 class="card-title">For Developers</h5>
+                <h5 class="card-title">We offer complete capital raising solution, designed to match RE developers with institutional investors. Our experienced team acts as your in-house capital partner to achieve strategic, fast and efficient funding solution in competitive markets</h5>
+                <!-- <p><strong>We offer complete capital raising solution, designed to match RE developers with institutional investors. Our experienced team acts as your in-house capital partner to achieve strategic, fast and efficient funding solution in competitive markets.</strong></p> -->
+                <p></p>
                 <p>Showcase deals and track record, and engage with institutional capital.</p>
+
                 <ul class="mb-0">
-                  <li>Upload a project synopsis</li>
-                  <li>Attach documents securely</li>
-                  <li>Engage verified investors</li>
+                  <li>Register and complete your company profile.</li>
+                  <li>Upload a project synopsis and attachments.</li>
+                  <li>When requested, sign a tri-party NDA with verified and interested investor.</li>
+                  <li>Exchange low level project details such as financial model with investor under strict NDA.</li>
                 </ul>
+
+                <div class="d-flex flex-wrap gap-2 mt-2">
+                  <a href="{{ url_for('upload') }}" class="btn btn-sm btn-outline-primary">
+                    Upload Project
+                  </a>
+                </div>
 
               </div>
             </div>
