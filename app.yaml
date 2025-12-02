@@ -1,10 +1,13 @@
-runtime: python311
+runtime: python312
 
 entrypoint: gunicorn -b :$PORT app:app
+
 
 env_variables:
   FLASK_ENV: "production"
   SECRET_KEY: "change-this-in-production"
+  GA_SKIP_CACHE: "True"
+
 
 handlers:
   # -----------------------------
@@ -20,3 +23,5 @@ handlers:
   # -----------------------------
   - url: /.*
     script: auto
+    
+    
