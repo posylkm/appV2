@@ -27,48 +27,57 @@ def can_edit_project(project, user):
     return getattr(user, "role", None) == "developer" and project.user_id == user.id
 
 
+app = Flask(__name__, instance_relative_config=True)
+
+# Always set secret keys first
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-change-me')
+app.config['WTF_CSRF_SECRET_KEY'] = os.getenv('WTF_CSRF_SECRET_KEY', 'dev-csrf-secret')
+
+database_url = os.environ.get("DATABASE_URL")
+
+if database_url:
+    # Production: use Cloud SQL
+    app.config["SQLALCHEMY_DATABASE_URI"] = database_url
+else:
+    # Local fallback
+    app.config.from_mapping(
+        DATABASE=os.path.join(app.instance_path, "projects.db"),
+    )
+    app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{app.config['DATABASE']}"
+
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["UPLOAD_FOLDER"] = "uploads"
+app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
+
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+db.init_app(app)
+
+
+
 # app = Flask(__name__, instance_relative_config=True)
 
-# database_url = os.environ.get("DATABASE_URL")
-# if database_url:
-#     app.config["SQLALCHEMY_DATABASE_URI"] = database_url.replace("postgres://", "postgresql://", 1)
-#     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-secret-change-me')
-# else:
+# # Always load SQL config from environment in production
+# DATABASE_URL = os.getenv("DATABASE_URL")
+
+# if not DATABASE_URL:
+#     # Local development fallback (SQLite)
 #     app.config.from_mapping(
 #         SECRET_KEY='dev-secret-change-me',
-#         DATABASE=os.path.join(app.instance_path, 'projects.db'),
+#         SQLALCHEMY_DATABASE_URI=f"sqlite:///{os.path.join(app.instance_path, 'projects.db')}",
 #     )
-#     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{app.config["DATABASE"]}'
+# else:
+#     # Production / Render / Cloud environment
+#     app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
+#     app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-change-me')
 
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['UPLOAD_FOLDER'] = 'uploads'
 # app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+
 # os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # db.init_app(app)
 
-app = Flask(__name__, instance_relative_config=True)
-
-# Default DB is local sqlite
-default_sqlite = "sqlite:///projects.db"
-
-# This will be set on Render and App Engine
-database_url = os.getenv("DATABASE_URL", default_sqlite)
-
-# Fix old Heroku-style URLs: postgres:// → postgresql://
-if database_url.startswith("postgres://"):
-    database_url = database_url.replace("postgres://", "postgresql://", 1)
-
-app.config["SQLALCHEMY_DATABASE_URI"] = database_url
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret-change-me")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
-# Local only — harmless in cloud
-app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-
-db.init_app(app)
 
 
 

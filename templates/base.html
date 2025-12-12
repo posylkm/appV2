@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% block title %}RE Marketplace{% endblock %}</title>
+  <title>{% block title %}RECapBridge{% endblock %}</title>
 
   <!-- Bootstrap 5 core CSS -->
   <link rel="stylesheet"
@@ -61,8 +61,8 @@
     <div class="container">
       <!-- Brand -->
       <a class="navbar-brand pg-brand d-flex align-items-center gap-2" href="{{ url_for('home') }}">
-        <img src="{{ url_for('static', filename='img/logo.jpg') }}" alt="RE Marketplace Logo" height="34">
-        <span>RE Marketplace</span>
+        <img src="{{ url_for('static', filename='img/logo2.jpg') }}" alt="RECapBridge Logo" height="34">
+        <span>RECapBridge</span>
       </a>
 
       <!-- Toggler -->
@@ -137,7 +137,7 @@
 
         {% block footer %}
         <footer class="border-top mt-5 py-3 small text-center text-muted">
-          RE Marketplace operates as a B2B intermediary only and does not provide investment advice or recommendations.
+          RECapBridge operates as a B2B intermediary only and does not provide investment advice or recommendations.
           Access is intended for professional/institutional investors and corporate developers.
           See our <a href="{{ url_for('eligibility') }}">Eligibility</a> and <a href="{{ url_for('disclaimer') }}">Disclaimer</a>.
         </footer>

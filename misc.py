@@ -109,8 +109,22 @@ with app.app_context():
 
 # PUSH TO GIT
 # !git add .
-# !git commit -m "home page picture changed"
+# !git commit -m "clean up db settings sqllite and postgres"
 # !git push
+
+
+
+# PUSH UPDATE TO GCLOUD
+# gcloud app deploy
+
+# https://console.cloud.google.com/sql/instances?authuser=1&project=re-marketplace-479911 ---> postgres / 5m}ub%%_udi9E.9`
+# export DATABASE_URL="postgresql+psycopg2://postgres:5m%7Dub%25%25_udi9E.9%60@127.0.0.1:5432/marketplace"
+
+
+with app.app_context():
+    db.create_all()
+    print("Tables created")
+
 
 
 # Hard refresh the browser

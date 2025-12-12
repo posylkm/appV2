@@ -1,27 +1,19 @@
 runtime: python312
-
 entrypoint: gunicorn -b :$PORT app:app
-
 
 env_variables:
   FLASK_ENV: "production"
-  SECRET_KEY: "change-this-in-production"
+  SECRET_KEY: "super-secret-change-me"
+  WTF_CSRF_SECRET_KEY: "another-secret-change-me"
   GA_SKIP_CACHE: "True"
 
+  DATABASE_URL: "postgresql+psycopg2://re-marketplace-db:5m%7Dub%25%25_udi9E.9%60@34.140.118.117:5432/marketplace"
 
 handlers:
-  # -----------------------------
-  # Static files (CSS, JS, images)
-  # -----------------------------
   - url: /static
     static_dir: static
     http_headers:
-      Cache-Control: "public, max-age=300"   # 5 minutes caching
+      Cache-Control: "public, max-age=300"
 
-  # -----------------------------
-  # Everything else goes to Flask
-  # -----------------------------
   - url: /.*
     script: auto
-    
-    

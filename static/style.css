@@ -1,5 +1,5 @@
 /* =========================================================
-   RE Marketplace — Unified Styles (Bootstrap 5 friendly)
+   RECapBridge — Unified Styles (Bootstrap 5 friendly)
    ---------------------------------------------------------
    - Compact Promeritum-style navbar (dark links before scroll)
    - Homepage skyline background with overlay
@@ -610,12 +610,34 @@ body:not(.home-page) .page-glass .filter-box .select2-container--default .select
 }
 
 /* ---------- Homepage-only skyline background ---------- */
-body.home-page {
-  background-image: url("/static/img//skyline_lion.jpg");
+/* body.home-page {
+  background-image: url("/static/img//skyline_lion_new.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  background-repeat: no-repeat;
+} */
+
+/* Full-screen skyline backgrounds on all pages */
+
+body.home-page,
+body:not(.home-page) {
+  background-size: cover;        /* Scale up/down to fill screen */
+  background-position: center;   /* Keep the middle visible */
+  background-repeat: no-repeat;  /* Stop the tiling on mobile */
+  background-attachment: fixed;  /* Nice desktop parallax effect */
+  min-height: 100vh;             /* Make sure page is at least viewport height */
 }
+
+body.home-page {
+  background-image: url("/static/img//skyline_lion_new.jpg");
+}
+
+body:not(.home-page) {
+  background-image: url("/static/img/skyline.jpg");
+}
+
+
 
 /* Dark overlay for readability — single, uniform overlay */
 body.home-page::before {
@@ -628,11 +650,22 @@ body.home-page::before {
 }
 
 /* iOS fallback */
-@supports (-webkit-touch-callout: none) {
+/* @supports (-webkit-touch-callout: none) {
   body.home-page {
     background-attachment: scroll;
   }
+} */
+
+
+/* iOS / mobile Safari: disable fixed backgrounds to avoid jank */
+/*
+@supports (-webkit-touch-callout: none) {
+  body.home-page,
+  body:not(.home-page) {
+    background-attachment: scroll;
+  }
 }
+*/
 
 
 body.home-page footer a {
@@ -661,12 +694,13 @@ body:not(.home-page) .page-glass footer {
    ========================================================== */
 
 /* Non-home pages: same skyline background as home */
-body:not(.home-page) {
+/*  body:not(.home-page) {
   background-image: url("/static/img/skyline.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-}
+  background-repeat: no-repeat;
+} */
 
 /* Dark radial overlay (same as homepage) */
 body:not(.home-page)::before {
@@ -1217,3 +1251,21 @@ label[for]:has(+ select[required])::after {
     font-weight: 700;
     margin-left: 4px;
 }
+
+
+/* Flash messages � glassy + more transparent */
+.container.mt-3 .alert {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  background-color: rgba(15, 23, 42, 0.45);   /* lower opacity */
+  color: #f1f5f9;
+
+  backdrop-filter: blur(8px);                 /* lighter blur */
+}
+
+

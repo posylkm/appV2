@@ -45,7 +45,7 @@ AUM_CHOICES = [
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), nullable=False, unique=True)
-    password_hash = db.Column(db.String(150), nullable=False)
+    password_hash = db.Column(db.Text)
     role = db.Column(db.String(20), default='developer')
     track_record = db.Column(db.String(200), nullable=True)   # e.g. "10 years / 12 deals"
     geo_focus    = db.Column(db.String(150), nullable=True)   # e.g. "UK, DACH, Nordics"
